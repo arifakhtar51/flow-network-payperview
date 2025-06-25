@@ -118,18 +118,45 @@ const Home = () => {
       <h2>Available Videos</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
         {videos.map((video) => (
-          <div key={video.id} style={{ border: '1px solid #eee', borderRadius: 8, padding: 16, width: 240 }}>
-            <img src={`https://gateway.pinata.cloud/ipfs/${video.thumbnailHash}`} alt="thumbnail" style={{ width: '100%', borderRadius: 8 }} />
-            <div>Price: {formatEther(video.price)} Flow</div>
-            <div>Valid View Time: {video.displayTime} sec</div>
-            <button
-              onClick={() => { if (account) { setSelectedVideo(video); checkCanView(video); } }}
-              style={{ marginTop: 8 }}
-              disabled={!account}
-              title={!account ? 'Connect your wallet to pay and view' : ''}
-            >
-              Pay to View
-            </button>
+          <div key={video.id} style={{
+            border: '1px solid #eee',
+            borderRadius: 12,
+            padding: 0,
+            width: 240,
+            height: 340,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            background: '#111',
+            boxSizing: 'border-box',
+            overflow: 'hidden',
+          }}>
+            <div style={{
+              flex: '0 0 180px',
+              width: '100%',
+              height: 180,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: '#222',
+              borderTopLeftRadius: 12,
+              borderTopRightRadius: 12,
+              overflow: 'hidden',
+            }}>
+              <img src={`https://gateway.pinata.cloud/ipfs/${video.thumbnailHash}`} alt="thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+            <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 16 }}>
+              <div style={{ marginBottom: 4 }}>Price: {formatEther(video.price)} Flow</div>
+              <div style={{ marginBottom: 12 }}>Valid View Time: {video.displayTime} sec</div>
+              <button
+                onClick={() => { if (account) { setSelectedVideo(video); checkCanView(video); } }}
+                style={{ marginTop: 'auto' }}
+                disabled={!account}
+                title={!account ? 'Connect your wallet to pay and view' : ''}
+              >
+                Pay to View
+              </button>
+            </div>
           </div>
         ))}
       </div>

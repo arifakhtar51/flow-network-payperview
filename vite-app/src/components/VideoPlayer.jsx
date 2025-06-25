@@ -5,7 +5,7 @@ const VideoPlayer = ({ ipfsHash }) => {
   if (!ipfsHash) return null;
   const src = `https://gateway.pinata.cloud/ipfs/${ipfsHash}`;
   return (
-    <div style={{ maxWidth: 640, margin: '0 auto' }}>
+    <div className="video-player-box" style={{ maxWidth: 640, margin: '0 auto' }}>
       <Plyr
         source={{
           type: 'video',
